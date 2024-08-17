@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["deno"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// 株価データ
+model StockPrice {
+  /// ID
+  id               Int      @id @default(autoincrement()) @map("id")
+  /// 始値
+  openPrice        Float?   @map("open_price")
+  /// 高値
+  highPrice        Float?   @map("high_price")
+  /// 安値
+  lowPrice         Float?   @map("low_price")
+  /// 終値
+  closePrice       Float?   @map("close_price")
+  /// 調整後終値
+  adjustClosePrice Float?   @map("adjust_close_price")
+  /// 出来高
+  volume           Float?   @map("volume")
+  /// 日時
+  datetime         DateTime @map("datetime")
+  /// 銘柄ID
+  stock_id         Int      @map("stock_id")
+  /// 作成日時
+  createdAt        DateTime @default(now()) @map("created_at")
+
+  stock Stock @relation(fields: [stock_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@map("stock_prices")
+}
+
+// 銘柄データ
+model Stock {
+  /// ID
+  id        Int      @id @default(autoincrement()) @map("id")
+  /// コード
+  code      String   @unique @map("code")
+  /// 名前
+  name      String   @map("name")
+  /// 作成日時
+  createdAt DateTime @default(now()) @map("created_at")
+  /// 更新日時
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  StockPrice StockPrice[]
+
+  @@map("stocks")
+}
