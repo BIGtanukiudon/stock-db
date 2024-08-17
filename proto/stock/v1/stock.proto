@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package stock.v1;
+
+message StockPrice {
+  string stock_code = 1;
+  optional float opening_price = 2;
+  optional float high_price = 3;
+  optional float low_price = 4;
+  optional float close_price = 5;
+  optional float adjust_close_price = 6;
+  optional float volume = 7;
+  string datetime = 8;
+}
+
+message PostStockPricesRequest {
+  repeated StockPrice stock_prices = 1;
+}
+
+message PostStockPricesResponse {
+  repeated StockPrice stock_prices = 1;
+}
+
+message GetStockPricesRequest {
+  string stock_code = 1;
+  string start_datetime = 2;
+  string end_datetime = 3;
+}
+
+message GetStockPricesResponse {
+  repeated StockPrice stock_prices = 1;
+}
+
+service StockService {
+  rpc PostStockPrices(PostStockPricesRequest) returns (PostStockPricesResponse);
+  rpc GetStockPrices(GetStockPricesRequest) returns (GetStockPricesResponse);
+}

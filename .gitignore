@@ -131,3 +131,4 @@ dist
 
 .vscode/
 db-data/
+gen/

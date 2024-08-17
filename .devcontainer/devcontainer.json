@@ -22,7 +22,8 @@
 			"extensions": [
 				"biomejs.biome",
 				"christian-kohler.npm-intellisense",
-				"Prisma.prisma"
+				"Prisma.prisma",
+				"bufbuild.vscode-buf"
 			]
 		}
 	}

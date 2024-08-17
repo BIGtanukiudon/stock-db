@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "server": "tsx server.ts",
     "prisma:migrate-dev": "prisma migrate dev",
     "prisma:db-push": "prisma db push",
+    "prisma:generate": "prisma generate",
+    "buf:generate": "buf generate",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -18,6 +21,15 @@
     "typescript": "^5.5.4"
   },
   "dependencies": {
-    "@prisma/client": "^5.18.0"
+    "@bufbuild/buf": "^1.37.0",
+    "@bufbuild/protobuf": "^1.10.0",
+    "@bufbuild/protoc-gen-es": "^1.10.0",
+    "@connectrpc/connect": "^1.4.0",
+    "@connectrpc/connect-fastify": "^1.4.0",
+    "@connectrpc/connect-node": "^1.4.0",
+    "@connectrpc/protoc-gen-connect-es": "^1.4.0",
+    "@prisma/client": "^5.18.0",
+    "dayjs": "^1.11.12",
+    "fastify": "^4.28.1"
   }
 }

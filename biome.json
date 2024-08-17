@@ -7,12 +7,13 @@
     "enabled": true,
     "rules": {
       "recommended": true
-    }
+    },
+    "ignore": ["gen/**/*", "proto/**/*"]
   },
   "formatter": {
     "enabled": true,
     "formatWithErrors": false,
-    "ignore": [],
+    "ignore": ["gen/**/*", "proto/**/*"],
     "attributePosition": "auto",
     "indentStyle": "space",
     "indentWidth": 2,
